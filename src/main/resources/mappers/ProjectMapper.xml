@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.mapper.ProjectMapper">	
+	
+	<select id="listAllProject" resultType="ProjectVO">
+		select * from project order by pno desc 
+		limit #{page},#{perPageNum}
+	</select>
+	<select id="readProject" resultType="ProjectVO">
+		select * from project where pno=#{pno}
+	</select>
+	
+	<select id="totalCountProject" resultType="int">
+		select count(*) from project
+	</select>
+	
+	<insert id="addProject">
+		insert into project(name,content,startdate,enddate,state) values(#{name},#{content},#{startdate},#{enddate},#{state})
+	</insert>
+	
+	<delete id="removeProject">
+		delete from project where pno=#{pno}
+	</delete>
+	
+	<update id="updateProject">
+		update project set name=#{name},content=#{content},startdate=#{startdate},enddate=#{enddate},state=#{state} where pno=#{pno}
+	</update>
+</mapper>
